@@ -8,10 +8,11 @@ import {
 import { useDispatch } from "react-redux";
 import moment from "moment";
 import AppModal from "@/components/modal/AppModal";
-import { Check, FileText, Upload, XIcon } from "@/icons";
+import { FileText, Upload, XIcon } from "@/icons";
 import ActionButton from "@/components/button/ActionButton";
 import { updateDocument } from "@/store/slices/applicationSlice";
 import type { Document } from "@/types/application";
+import { showToast } from "@/utils";
 
 interface UploadedFile {
   file: File;
@@ -198,6 +199,10 @@ function UploadDocumentAction({ doc }: { doc: Document }) {
       );
 
       setUploadState("success");
+      showToast({
+        title: "Uploaded successfully!",
+        color: "success",
+      });
     } catch {
       setUploadState("error");
       setErrorMessage("Upload failed. Please try again.");
@@ -228,38 +233,20 @@ function UploadDocumentAction({ doc }: { doc: Document }) {
         </ModalHeader>
 
         <ModalBody className="py-5 flex flex-col gap-4">
-          {isSuccess ? (
-            <div className="flex flex-col items-center gap-3 py-8">
-              <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center">
-                <Check />
-              </div>
-              <p className="text-sm font-medium text-text-default">
-                Uploaded successfully!
-              </p>
-            </div>
-          ) : (
-            <>
-              <DropZone
-                uploadState={uploadState}
-                onFileSelect={handleFileSelect}
-                onDragChange={(dragging) =>
-                  setUploadState(dragging ? "dragging" : "idle")
-                }
-              />
+          <DropZone
+            uploadState={uploadState}
+            onFileSelect={handleFileSelect}
+            onDragChange={(dragging) =>
+              setUploadState(dragging ? "dragging" : "idle")
+            }
+          />
 
-              {uploadedFile && (
-                <FilePreview
-                  uploadedFile={uploadedFile}
-                  onRemove={resetState}
-                />
-              )}
+          {uploadedFile && (
+            <FilePreview uploadedFile={uploadedFile} onRemove={resetState} />
+          )}
 
-              {errorMessage && (
-                <p className="text-xs text-red-500 text-center">
-                  {errorMessage}
-                </p>
-              )}
-            </>
+          {errorMessage && (
+            <p className="text-xs text-red-500 text-center">{errorMessage}</p>
           )}
         </ModalBody>
 

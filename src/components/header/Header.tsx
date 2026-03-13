@@ -1,6 +1,7 @@
 import { ArrowLeft, ArrowRight, Mail, More, Search } from "@/icons";
 import { Button } from "@heroui/react";
-import InputField from "../input/Input";
+import InputField from "@/components/input/Input";
+import ActionButton from "@/components/button/ActionButton";
 
 function Header() {
   return (
@@ -34,27 +35,25 @@ function Header() {
       </div>
 
       <div className="flex items-center gap-4 shrink-0">
-        <Button
+        <ActionButton
           variant="bordered"
-          className="border border-border-secondary font-medium h-11 min-w-auto"
-          radius="sm"
+          className="border border-border-secondary"
           startContent={<Mail width={20} height={20} />}
         >
-          Request Documents
-        </Button>
+          <span className="lg:flex hidden">Request Documents</span>
+        </ActionButton>
 
-        <Button
+        <ActionButton
           variant="bordered"
-          className="border-none bg-color-primary font-medium h-11 min-w-auto"
-          radius="sm"
+          className="border-none bg-color-primary"
           endContent={<ArrowRight width={20} height={20} />}
         >
-          Move to Next Stage
-        </Button>
+          <span className="lg:flex hidden">Move to Next Stage</span>
+        </ActionButton>
 
-        <Button variant="light" isIconOnly className="h-11">
+        <ActionButton variant="light" isIconOnly>
           <More width={20} height={20} />
-        </Button>
+        </ActionButton>
       </div>
     </nav>
   );

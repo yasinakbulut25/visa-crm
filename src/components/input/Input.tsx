@@ -1,7 +1,6 @@
-import { Input } from "@heroui/react";
-import type { ComponentProps } from "react";
+import { Input, type InputProps } from "@heroui/react";
 
-function InputField({ ...props }: ComponentProps<typeof Input>) {
+function InputField({ ...props }: InputProps) {
   return (
     <Input
       radius="sm"

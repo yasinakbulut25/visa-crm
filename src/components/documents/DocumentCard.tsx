@@ -3,19 +3,7 @@ import StatusBadge from "./StatusBadge";
 import moment from "moment";
 import DocumentActions from "./DocumentActions";
 
-interface DocumentCardProps {
-  doc: Document;
-  onViewDoc?: (id: string) => void;
-  onUpload?: (id: string) => void;
-  onViewNote?: (note: string) => void;
-}
-
-function DocumentCard({
-  doc,
-  onViewDoc,
-  onUpload,
-  onViewNote,
-}: DocumentCardProps) {
+function DocumentCard({ doc }: { doc: Document }) {
   const isMissing = doc.status === "missing";
 
   return (
@@ -32,12 +20,7 @@ function DocumentCard({
         </p>
       </div>
 
-      <DocumentActions
-        doc={doc}
-        onViewDoc={onViewDoc}
-        onUpload={onUpload}
-        onViewNote={onViewNote}
-      />
+      <DocumentActions doc={doc} />
     </div>
   );
 }

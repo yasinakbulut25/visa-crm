@@ -5,10 +5,6 @@ import DocumentCard from "./DocumentCard";
 function DocumentsWrapper() {
   const documents = useSelector(selectDocuments);
 
-  const handleViewNote = (note: string) => {
-    alert(`Revision Note: ${note}`);
-  };
-
   return (
     <div className="w-full mx-auto p-6">
       <div className="flex flex-col gap-1 mb-4">
@@ -22,13 +18,7 @@ function DocumentsWrapper() {
 
       <div className="flex flex-col gap-3">
         {documents.map((doc) => (
-          <DocumentCard
-            key={doc.id}
-            doc={doc}
-            onViewNote={handleViewNote}
-            onViewDoc={(id: string) => console.log("Viewing", id)}
-            onUpload={(id: string) => console.log("Uploading to", id)}
-          />
+          <DocumentCard key={doc.id} doc={doc} />
         ))}
       </div>
     </div>

@@ -3,6 +3,9 @@ import { type RootState } from "@/store";
 export const selectApplication = (state: RootState) =>
   state.application.application;
 
+export const selectApplicationType = (state: RootState) =>
+  state.application.application.type;
+
 export const selectCurrentStage = (state: RootState) =>
   state.application.application.currentStage;
 

@@ -1,9 +1,8 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import Stage from "./Stage";
 import { selectStages } from "@/store/selectors/applicationSelectors";
 
-const ProgressTracker: React.FC = () => {
+function ProgressTracker() {
   const stages = useSelector(selectStages);
 
   return (
@@ -13,6 +12,6 @@ const ProgressTracker: React.FC = () => {
       ))}
     </section>
   );
-};
+}
 
 export default ProgressTracker;

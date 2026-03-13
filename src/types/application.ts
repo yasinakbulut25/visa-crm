@@ -9,7 +9,7 @@ export interface RelatedApplication {
   id: string;
   type: string;
   period: string;
-  status: string;
+  status: "approved" | "rejected";
 }
 
 export interface Traveler {

@@ -58,7 +58,7 @@ function Header() {
           variant="bordered"
           className="border-none bg-color-primary"
           endContent={<ArrowRight width={20} height={20} />}
-          onClick={handleNextStage}
+          onPress={handleNextStage}
         >
           <span className="lg:flex hidden">Move to Next Stage</span>
         </ActionButton>

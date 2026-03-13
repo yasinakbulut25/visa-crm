@@ -1,12 +1,14 @@
 import Header from "@/components/header/Header";
 import ProgressTracker from "@/components/progress/ProgressTracker";
+import MainLayout from "./MainLayout";
 
 function App() {
   return (
-    <main>
+    <>
       <Header />
       <ProgressTracker />
-    </main>
+      <MainLayout />
+    </>
   );
 }
 

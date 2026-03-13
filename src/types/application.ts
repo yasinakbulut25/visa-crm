@@ -1,15 +1,17 @@
+export type StageStatus = "completed" | "current" | "pending";
 export interface Stage {
   key: string;
   label: string;
-  status: "completed" | "current" | "pending";
+  status: StageStatus;
   completedDate?: string;
 }
 
+export type RelatedStatus = "approved" | "rejected";
 export interface RelatedApplication {
   id: string;
   type: string;
   period: string;
-  status: "approved" | "rejected";
+  status: RelatedStatus;
 }
 
 export interface Traveler {
@@ -23,6 +25,7 @@ export interface Traveler {
   relatedApplications: RelatedApplication[];
 }
 
+export type DocumentStatus = "uploaded" | "missing" | "revision_requested";
 export interface Document {
   id: string;
   name: string;

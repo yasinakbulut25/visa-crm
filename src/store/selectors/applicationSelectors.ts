@@ -14,6 +14,9 @@ export const selectStages = (state: RootState) =>
 
 export const selectTraveler = (state: RootState) => state.application.traveler;
 
+export const selectRelatedApplications = (state: RootState) =>
+  state.application.traveler.relatedApplications;
+
 export const selectDocuments = (state: RootState) =>
   state.application.documents;
 

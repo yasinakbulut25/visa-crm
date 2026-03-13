@@ -1,8 +1,6 @@
-export type StepStatus = "completed" | "current" | "upcoming";
-
 export interface IStep {
-  id: number;
-  title: string;
-  subtext?: string;
-  status: StepStatus;
+  key: string;
+  label: string;
+  status: string;
+  completedDate?: string;
 }

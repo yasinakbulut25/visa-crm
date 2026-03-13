@@ -6,3 +6,6 @@ export { default as More } from "./More";
 export { default as Check } from "./Check";
 export { default as Phone } from "./Phone";
 export { default as Anchor } from "./Anchor";
+export { default as Edit } from "./Edit";
+export { default as FileText } from "./FileText";
+export { default as Upload } from "./Upload";

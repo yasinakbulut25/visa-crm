@@ -1,11 +1,14 @@
-import ProfileSidebar from "./components/profileSidebar/ProfileSidebar";
+import DocumentsWrapper from "@/components/documents/DocumentsWrapper";
+import ProfileSidebar from "@/components/profileSidebar/ProfileSidebar";
 
 function MainLayout() {
   return (
-    <div className="flex">
+    <div className="flex gap-4">
       <ProfileSidebar />
 
-      <main className="flex-1 min-w-0 overflow-auto">...</main>
+      <main className="flex-1 min-w-0 overflow-auto">
+        <DocumentsWrapper />
+      </main>
 
       <aside className="hidden xl:flex w-78 shrink-0">...</aside>
     </div>

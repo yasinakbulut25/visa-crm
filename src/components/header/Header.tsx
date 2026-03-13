@@ -2,6 +2,7 @@ import { ArrowLeft, ArrowRight, Mail, More, Search } from "@/icons";
 import { Button } from "@heroui/react";
 import InputField from "@/components/input/Input";
 import ActionButton from "@/components/button/ActionButton";
+import { mockData } from "@/data/mock";
 
 function Header() {
   return (
@@ -22,7 +23,9 @@ function Header() {
               Applications
             </span>
             <span className="font-normal text-text-secondary">/</span>
-            <span className="font-bold text-text-default">#7418</span>
+            <span className="font-bold text-text-default">
+              {mockData.application.id}
+            </span>
           </div>
         </div>
       </div>

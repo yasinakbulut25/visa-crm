@@ -1,5 +1,5 @@
 import Header from "@/components/header/Header";
-import ProgressTracker from "@/components/timeline/ProgressTracker";
+import ProgressTracker from "@/components/progress/ProgressTracker";
 
 function App() {
   return (

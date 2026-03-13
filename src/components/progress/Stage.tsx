@@ -1,10 +1,10 @@
 import React from "react";
-import type { IStep } from "@/types/progressTracker";
+import type { IStage } from "@/types/progressTracker";
 import { Check } from "@/icons";
 import moment from "moment";
 
-function Step({ step }: { step: IStep }) {
-  const { label, status, completedDate } = step;
+function Stage({ stage }: { stage: IStage }) {
+  const { label, status, completedDate } = stage;
 
   const configs: Record<
     string,
@@ -69,4 +69,4 @@ function Step({ step }: { step: IStep }) {
   );
 }
 
-export default Step;
+export default Stage;

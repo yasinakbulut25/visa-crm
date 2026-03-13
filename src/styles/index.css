@@ -3,3 +3,13 @@
 
 @source '../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
 @custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-sans: "Inter", sans-serif;
+  --color-color-primary: #c6dc3f;
+  --color-text-default: #1e1e1e;
+  --color-text-secondary: #757575;
+  --color-text-neutral: #767676;
+  --color-border-default: #d9d9d9;
+  --color-border-secondary: #b8d30f;
+}

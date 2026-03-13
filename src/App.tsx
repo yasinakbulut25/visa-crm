@@ -1,9 +1,9 @@
-import { Button } from "@heroui/react";
+import Header from "@/components/header/Header";
 
 function App() {
   return (
     <main>
-      <Button>Visa CRM Case</Button>
+      <Header />
     </main>
   );
 }

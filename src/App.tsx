@@ -1,7 +1,9 @@
+import { Button } from "@heroui/react";
+
 function App() {
   return (
     <main>
-      <p className="text-red-600">Visa CRM Case</p>
+      <Button>Visa CRM Case</Button>
     </main>
   );
 }

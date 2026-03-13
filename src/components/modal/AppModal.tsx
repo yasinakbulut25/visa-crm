@@ -1,10 +1,17 @@
-import { Modal, ModalContent, type ModalProps } from "@heroui/react";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  type ModalProps,
+} from "@heroui/react";
 
 interface AppModalProps extends Omit<ModalProps, "children"> {
   children: React.ReactNode;
+  title: string;
+  description: string;
 }
 
-function AppModal({ children, ...props }: AppModalProps) {
+function AppModal({ children, title, description, ...props }: AppModalProps) {
   return (
     <Modal
       radius="lg"
@@ -17,7 +24,15 @@ function AppModal({ children, ...props }: AppModalProps) {
       }}
       {...props}
     >
-      <ModalContent>{children}</ModalContent>
+      <ModalContent>
+        <ModalHeader className="flex flex-col gap-0.5">
+          <h2 className="text-lg font-semibold text-text-default">{title}</h2>
+          <p className="text-sm font-normal text-text-secondary">
+            {description}
+          </p>
+        </ModalHeader>
+        {children}
+      </ModalContent>
     </Modal>
   );
 }

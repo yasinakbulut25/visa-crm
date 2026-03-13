@@ -1,7 +1,8 @@
 import type { Document } from "@/types/application";
-import { Edit, FileText, More } from "@/icons";
+import { FileText, More } from "@/icons";
 import ActionButton from "../button/ActionButton";
 import UploadDocumentAction from "./actions/UploadDocumentAction";
+import ViewNoteAction from "./actions/ViewNoteAction";
 
 function DocumentActions({ doc }: { doc: Document }) {
   const isMissing = doc.status === "missing";
@@ -9,14 +10,7 @@ function DocumentActions({ doc }: { doc: Document }) {
 
   return (
     <div className="flex items-center gap-3">
-      {isRevision && doc.revisionNote && (
-        <ActionButton
-          className="bg-white border text-sm font-semibold border-border-tertiary text-text-default"
-          startContent={<Edit width={20} />}
-        >
-          View Note
-        </ActionButton>
-      )}
+      {isRevision && doc.revisionNote && <ViewNoteAction doc={doc} />}
 
       {isMissing ? (
         <UploadDocumentAction doc={doc} />

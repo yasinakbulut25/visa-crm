@@ -1,6 +1,5 @@
 import { useRef, useState, useCallback } from "react";
 import {
-  ModalHeader,
   ModalBody,
   ModalFooter,
   useDisclosure,
@@ -222,16 +221,12 @@ function UploadDocumentAction({ doc }: { doc: Document }) {
         Upload
       </ActionButton>
 
-      <AppModal isOpen={isOpen} onClose={handleClose}>
-        <ModalHeader className="flex flex-col gap-0.5">
-          <h2 className="text-base font-semibold text-text-default">
-            Upload Document
-          </h2>
-          <p className="text-xs font-normal text-gray-400">
-            Supported formats: PDF, JPG, PNG, DOC
-          </p>
-        </ModalHeader>
-
+      <AppModal
+        isOpen={isOpen}
+        onClose={handleClose}
+        title="Upload Document"
+        description="Supported formats: PDF, JPG, PNG, DOC"
+      >
         <ModalBody className="py-5 flex flex-col gap-4">
           <DropZone
             uploadState={uploadState}

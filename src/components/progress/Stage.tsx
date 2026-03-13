@@ -1,7 +1,7 @@
 import React from "react";
-import type { IStage } from "@/types/progressTracker";
 import { Check } from "@/icons";
 import moment from "moment";
+import type { Stage as IStage } from "@/types/application";
 
 function Stage({ stage }: { stage: IStage }) {
   const { label, status, completedDate } = stage;

@@ -3,11 +3,15 @@ import { createRoot } from "react-dom/client";
 import "./styles/index.css";
 import App from "./App.tsx";
 import { HeroUIProvider } from "@heroui/react";
+import { store } from "@/store/index.ts";
+import { Provider } from "react-redux";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <HeroUIProvider>
-      <App />
-    </HeroUIProvider>
+    <Provider store={store}>
+      <HeroUIProvider>
+        <App />
+      </HeroUIProvider>
+    </Provider>
   </StrictMode>,
 );

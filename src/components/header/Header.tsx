@@ -3,8 +3,16 @@ import { Button } from "@heroui/react";
 import InputField from "@/components/input/Input";
 import ActionButton from "@/components/button/ActionButton";
 import { mockData } from "@/data/mock";
+import { useDispatch } from "react-redux";
+import { moveToNextStage } from "@/store/slices/applicationSlice";
 
 function Header() {
+  const dispatch = useDispatch();
+
+  const handleNextStage = () => {
+    dispatch(moveToNextStage());
+  };
+
   return (
     <nav className="flex items-center justify-between gap-6 px-6 py-3 bg-white border-b border-border-default w-full">
       <div className="flex items-center gap-3 py-0.5">
@@ -50,6 +58,7 @@ function Header() {
           variant="bordered"
           className="border-none bg-color-primary"
           endContent={<ArrowRight width={20} height={20} />}
+          onClick={handleNextStage}
         >
           <span className="lg:flex hidden">Move to Next Stage</span>
         </ActionButton>

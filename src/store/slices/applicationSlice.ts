@@ -1,0 +1,19 @@
+import { createSlice } from "@reduxjs/toolkit";
+import { mockData } from "@/data/mock";
+import type { IApplicationState } from "@/types/application";
+import { moveToNextStageReducer } from "./reducers/moveToNextStageReducer";
+
+const initialState: IApplicationState = structuredClone(
+  mockData,
+) as IApplicationState;
+
+const applicationSlice = createSlice({
+  name: "application",
+  initialState,
+  reducers: {
+    moveToNextStage: (state) => moveToNextStageReducer(state),
+  },
+});
+
+export const { moveToNextStage } = applicationSlice.actions;
+export default applicationSlice.reducer;

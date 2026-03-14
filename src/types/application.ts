@@ -39,8 +39,7 @@ export interface Note {
   id: string;
   author: string;
   content: string;
-  createdAt?: string;
-  created_at?: string;
+  createdAt: string;
 }
 
 export interface CommunicationLog {

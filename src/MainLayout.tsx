@@ -1,5 +1,6 @@
 import DocumentsWrapper from "@/components/documents/DocumentsWrapper";
 import ProfileSidebar from "@/components/profileSidebar/ProfileSidebar";
+import RightSidebar from "./components/rightSidebar/RightSidebar";
 
 function MainLayout() {
   return (
@@ -10,7 +11,7 @@ function MainLayout() {
         <DocumentsWrapper />
       </main>
 
-      <aside className="hidden xl:flex w-78 shrink-0">...</aside>
+      <RightSidebar />
     </div>
   );
 }

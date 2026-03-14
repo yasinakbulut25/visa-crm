@@ -14,7 +14,7 @@ function RightSidebar() {
   return (
     <aside
       className={clsx(
-        "w-78 h-full shrink-0 flex flex-col bg-white border-l border-border-default px-6 overflow-y-auto transition-all",
+        "w-78 min-h-full shrink-0 flex flex-col bg-white border-l border-border-default px-6 overflow-y-auto transition-all",
         "lg:relative lg:right-0 absolute top-0 z-50",
         isRightOpen ? "right-0" : "-right-78",
       )}

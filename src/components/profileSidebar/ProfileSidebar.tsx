@@ -15,7 +15,7 @@ function ProfileSidebar() {
   return (
     <aside
       className={clsx(
-        "w-65 h-full shrink-0 bg-white border-r border-border-default px-6 overflow-y-auto transition-left",
+        "w-65 min-h-full shrink-0 bg-white border-r border-border-default px-6 overflow-y-auto transition-left",
         "lg:relative lg:left-0 absolute top-0 z-50",
         isLeftOpen ? "left-0" : "-left-65",
       )}

@@ -25,11 +25,16 @@ export interface Traveler {
   relatedApplications: RelatedApplication[];
 }
 
-export type DocumentStatus = "uploaded" | "missing" | "revision_requested";
+export type DocumentStatus =
+  | "uploaded"
+  | "missing"
+  | "revision_requested"
+  | "approved"
+  | "rejected";
 export interface Document {
   id: string;
   name: string;
-  status: "uploaded" | "missing" | "revision_requested";
+  status: DocumentStatus;
   uploadedDate?: string;
   uploaded_date?: string;
   revisionNote?: string;

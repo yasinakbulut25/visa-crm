@@ -18,6 +18,14 @@ const STATUS_MAP: Record<DocumentStatus, StatusConfig> = {
     label: "Revision Requested",
     containerClass: "bg-[#FFF1C2] border-[#975102] text-[#975102]",
   },
+  approved: {
+    label: "Approved",
+    containerClass: "bg-[#CFF7D3] border-[#02542D] text-[#02542D]",
+  },
+  rejected: {
+    label: "Rejected",
+    containerClass: "bg-[#FDD3D0] border-[#EC221F] text-[#900B09]",
+  },
 };
 
 function StatusBadge({ status }: { status: DocumentStatus }) {

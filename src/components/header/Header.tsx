@@ -1,17 +1,10 @@
-import { ArrowLeft, ArrowRight, Mail, More, Search } from "@/icons";
+import { ArrowLeft, Mail, More, Search } from "@/icons";
 import InputField from "@/components/input/Input";
 import ActionButton from "@/components/button/ActionButton";
 import { mockData } from "@/data/mock";
-import { useDispatch } from "react-redux";
-import { moveToNextStage } from "@/store/slices/applicationSlice";
+import NextStageButton from "./NextStageButton";
 
 function Header() {
-  const dispatch = useDispatch();
-
-  const handleNextStage = () => {
-    dispatch(moveToNextStage());
-  };
-
   return (
     <nav className="flex items-center justify-between gap-6 px-6 py-3 bg-white border-b border-border-default w-full">
       <div className="flex items-center gap-3 py-0.5">
@@ -55,14 +48,7 @@ function Header() {
           <span className="lg:flex hidden">Request Documents</span>
         </ActionButton>
 
-        <ActionButton
-          endContent={<ArrowRight width={20} height={20} />}
-          color="primary"
-          onPress={handleNextStage}
-          aria-label="Move to Next Stage"
-        >
-          <span className="lg:flex hidden">Move to Next Stage</span>
-        </ActionButton>
+        <NextStageButton />
 
         <ActionButton
           variant="light"

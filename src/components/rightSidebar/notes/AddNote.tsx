@@ -14,7 +14,7 @@ function AddNote() {
 
     dispatch(
       addInternalNote({
-        author: "Yasin Akbulut",
+        author: "You",
         content: note.trim(),
       }),
     );

@@ -1,13 +1,13 @@
 import { useRef, useState, useCallback } from "react";
-import { ModalBody, ModalFooter, useDisclosure } from "@heroui/react";
+import { Alert, ModalBody, ModalFooter, useDisclosure } from "@heroui/react";
 import { useDispatch } from "react-redux";
-import moment from "moment";
 import AppModal from "@/components/modal/AppModal";
 import { FileText, Upload, XIcon } from "@/icons";
 import ActionButton from "@/components/button/ActionButton";
 import { updateDocument } from "@/store/slices/applicationSlice";
 import type { Document } from "@/types/application";
 import { showToast } from "@/utils";
+import { fakeUpload } from "@/utils/fakeUpload";
 
 interface UploadedFile {
   file: File;
@@ -182,26 +182,28 @@ function UploadDocumentAction({ doc }: { doc: Document }) {
     setErrorMessage("");
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 500));
+      const result = await fakeUpload(uploadedFile.file, 1200);
 
-      dispatch(
-        updateDocument({
-          docId: doc.id,
-          data: {
-            status: "uploaded",
-            uploadedDate: moment().format("YYYY-MM-DD"),
-          },
-        }),
-      );
+      if (result.success) {
+        dispatch(
+          updateDocument({
+            docId: doc.id,
+            data: {
+              status: "uploaded",
+              uploadedDate: result.uploadedDate,
+            },
+          }),
+        );
 
-      setUploadState("success");
-      showToast({
-        title: "Uploaded successfully!",
-        color: "success",
-      });
+        setUploadState("success");
+        showToast({ title: "Uploaded successfully!", color: "success" });
+      } else {
+        setUploadState("error");
+        setErrorMessage(result.error);
+      }
     } catch {
       setUploadState("error");
-      setErrorMessage("Upload failed. Please try again.");
+      setErrorMessage("Unexpected error. Please try again.");
     }
   };
 
@@ -239,32 +241,43 @@ function UploadDocumentAction({ doc }: { doc: Document }) {
             <FilePreview uploadedFile={uploadedFile} onRemove={resetState} />
           )}
 
-          {errorMessage && (
-            <p className="text-xs text-red-500 text-center">{errorMessage}</p>
-          )}
+          {errorMessage && <Alert color="danger" description={errorMessage} />}
         </ModalBody>
 
         {!isSuccess && (
           <ModalFooter className="gap-2">
-            <ActionButton
-              variant="light"
-              color="default"
-              onPress={handleClose}
-              className="font-medium text-text-secondary rounded-xl"
-              aria-label="Cancel"
-            >
-              Cancel
-            </ActionButton>
-            <ActionButton
-              onPress={handleUpload}
-              isDisabled={!uploadedFile || isUploading}
-              isLoading={isUploading}
-              variant="solid"
-              color="primary"
-              aria-label="Upload"
-            >
-              {isUploading ? "Uploading..." : "Upload"}
-            </ActionButton>
+            {uploadState === "error" ? (
+              <ActionButton
+                onPress={handleUpload}
+                variant="solid"
+                color="primary"
+                aria-label="Retry"
+              >
+                Retry
+              </ActionButton>
+            ) : (
+              <>
+                <ActionButton
+                  variant="light"
+                  color="default"
+                  onPress={handleClose}
+                  className="font-medium text-text-secondary rounded-xl"
+                  aria-label="Cancel"
+                >
+                  Cancel
+                </ActionButton>
+                <ActionButton
+                  onPress={handleUpload}
+                  isDisabled={!uploadedFile || isUploading}
+                  isLoading={isUploading}
+                  variant="solid"
+                  color="primary"
+                  aria-label="Upload"
+                >
+                  {isUploading ? "Uploading..." : "Upload"}
+                </ActionButton>
+              </>
+            )}
           </ModalFooter>
         )}
       </AppModal>

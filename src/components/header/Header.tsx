@@ -1,5 +1,4 @@
 import { ArrowLeft, ArrowRight, Mail, More, Search } from "@/icons";
-import { Button } from "@heroui/react";
 import InputField from "@/components/input/Input";
 import ActionButton from "@/components/button/ActionButton";
 import { mockData } from "@/data/mock";
@@ -16,13 +15,14 @@ function Header() {
   return (
     <nav className="flex items-center justify-between gap-6 px-6 py-3 bg-white border-b border-border-default w-full">
       <div className="flex items-center gap-3 py-0.5">
-        <Button
+        <ActionButton
           variant="light"
+          color="default"
           startContent={<ArrowLeft width={20} height={20} />}
-          className="font-medium"
+          aria-label="Back"
         >
           Back
-        </Button>
+        </ActionButton>
 
         <div className="flex items-center gap-2">
           <img src="./logo.png" alt="Here Event Logo" width={40} height={24} />

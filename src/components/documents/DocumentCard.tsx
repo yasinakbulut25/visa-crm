@@ -11,7 +11,7 @@ function DocumentCard({ doc }: { doc: Document }) {
   return (
     <div
       className={clsx(
-        "group flex items-center justify-between p-6 border border-border-default rounded-xl transition-all duration-200",
+        "group flex flex-wrap gap-2 items-center justify-between p-6 border border-border-default rounded-xl transition-all duration-200",
         isRejected ? "bg-[#FEE9E7]" : "bg-white hover:bg-color-light",
       )}
     >

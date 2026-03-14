@@ -4,7 +4,7 @@ import RightSidebar from "./components/rightSidebar/RightSidebar";
 
 function MainLayout() {
   return (
-    <div className="flex gap-4">
+    <div className="relative flex gap-4">
       <ProfileSidebar />
 
       <main className="flex-1 min-w-0 overflow-auto">

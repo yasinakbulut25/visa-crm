@@ -16,7 +16,7 @@ function UserInfos() {
   const applicationType = useSelector(selectApplicationType);
 
   return (
-    <div className="flex flex-col gap-3 border-b border-border-default py-6">
+    <div className="flex flex-col gap-3 border-b border-border-default pb-6 lg:pt-6 pt-0">
       <div className="flex items-center gap-3">
         <div className="w-12 h-12 shrink-0 flex items-center justify-center bg-color-neutral rounded-full text-lg text-white uppercase">
           {initials}

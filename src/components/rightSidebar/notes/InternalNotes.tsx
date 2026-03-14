@@ -7,7 +7,7 @@ function InternalNotes() {
   const internalNotes = useSelector(selectInternalNotes);
 
   return (
-    <div className="flex flex-col gap-6 border-b border-border-default pb-4">
+    <div className="flex flex-col gap-6 border-b border-border-default pb-4 lg:pt-6 pt-0">
       <div className="flex flex-col gap-3">
         <div className="flex flex-col gap-1">
           <h2 className="text-[20px] font-bold text-text-default leading-6">

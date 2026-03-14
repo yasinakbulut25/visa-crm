@@ -23,8 +23,7 @@ function ProfileSidebar() {
       <ActionButton
         onPress={() => dispatch(setLeftSidebar(false))}
         variant="light"
-        color="dark"
-        className="lg:hidden flex text-left p-2 my-3 h-max text-text-secondary"
+        className="lg:hidden flex text-left p-2 my-3 w-max h-max text-text-secondary"
         startContent={<ArrowLeft width={20} height={20} color="#757575" />}
         aria-label="Close Left Sidebar"
       >

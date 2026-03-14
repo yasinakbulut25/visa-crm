@@ -2,7 +2,7 @@ import { selectDocuments } from "@/store/selectors/applicationSelectors";
 import { useDispatch, useSelector } from "react-redux";
 import DocumentCard from "./DocumentCard";
 import ActionButton from "../button/ActionButton";
-import { toggleLeftSidebar } from "@/store/slices/uiSlice";
+import { toggleLeftSidebar, toggleRightSidebar } from "@/store/slices/uiSlice";
 
 function DocumentsWrapper() {
   const documents = useSelector(selectDocuments);
@@ -28,6 +28,15 @@ function DocumentsWrapper() {
             aria-label="Toggle Left Sidebar"
           >
             Profiles
+          </ActionButton>
+          <ActionButton
+            onPress={() => dispatch(toggleRightSidebar())}
+            variant="solid"
+            color="primary"
+            className="lg:hidden flex"
+            aria-label="Toggle Right Sidebar"
+          >
+            Notes
           </ActionButton>
         </div>
       </div>

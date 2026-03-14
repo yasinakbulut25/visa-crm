@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { selectInternalNotes } from "@/store/selectors/applicationSelectors";
+import AddNote from "./AddNote";
 import { timeAgoShort } from "@/utils";
 
 function InternalNotes() {
@@ -7,6 +8,7 @@ function InternalNotes() {
 
   return (
     <div className="flex flex-col gap-6 border-b border-border-default pb-4">
+      <AddNote />
       <div className="flex flex-col">
         {internalNotes.map((note) => {
           const timeAgo = timeAgoShort(note.createdAt);

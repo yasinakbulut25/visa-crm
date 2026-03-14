@@ -10,3 +10,4 @@ export { default as Edit } from "./Edit";
 export { default as FileText } from "./FileText";
 export { default as Upload } from "./Upload";
 export { default as XIcon } from "./XIcon";
+export { default as Send } from "./Send";

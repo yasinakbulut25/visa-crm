@@ -12,7 +12,7 @@ function InputField({ ...props }: InputProps) {
         ],
         innerWrapper: "bg-transparent",
         inputWrapper: [
-          "py-1 px-2 h-11 rounded-small",
+          "py-1 px-3 h-11 rounded-small",
           "!bg-transparent border border-border-default shadow-none",
           "data-[hover=true]:!bg-transparent",
           "group-data-[focus=true]:!bg-transparent",

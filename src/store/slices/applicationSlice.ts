@@ -6,6 +6,10 @@ import {
   updateDocumentReducer,
   type UpdateDocumentPayload,
 } from "./reducers/updateDocumentReducer";
+import {
+  addInternalNoteReducer,
+  type InternalNotePayload,
+} from "./reducers/addInternalNoteReducer";
 
 const initialState: IApplicationState = structuredClone(
   mockData,
@@ -19,8 +23,12 @@ const applicationSlice = createSlice({
 
     updateDocument: (state, action: PayloadAction<UpdateDocumentPayload>) =>
       updateDocumentReducer(state, action.payload),
+
+    addInternalNote: (state, action: PayloadAction<InternalNotePayload>) =>
+      addInternalNoteReducer(state, action.payload),
   },
 });
 
-export const { moveToNextStage, updateDocument } = applicationSlice.actions;
+export const { moveToNextStage, updateDocument, addInternalNote } =
+  applicationSlice.actions;
 export default applicationSlice.reducer;

@@ -11,8 +11,8 @@ A frontend case study implementing the **Application Detail** page of a modular 
 - [Tech Stack & Tooling Decisions](https://github.com/yasinakbulut25/visa-crm?tab=readme-ov-file#tech-stack--tooling-decisions)
 - [Features Implemented](https://github.com/yasinakbulut25/visa-crm?tab=readme-ov-file#features-implemented)
 - [Project Structure](https://github.com/yasinakbulut25/visa-crm?tab=readme-ov-file#project-structure)
+- [Developer Notes](https://github.com/yasinakbulut25/visa-crm?tab=readme-ov-file#developer-decisions)
 - [Architecture Decisions](https://github.com/yasinakbulut25/visa-crm?tab=readme-ov-file#architecture-decisions)
-- [Developer Notes](https://github.com/yasinakbulut25/visa-crm?tab=readme-ov-file#developer-notes)
 - [AI Tool Usage](https://github.com/yasinakbulut25/visa-crm?tab=readme-ov-file#ai-tool-usage)
 
 ## Overview
@@ -190,6 +190,8 @@ src
 │   │   │   │   └── 📄 ViewDocumentAction.tsx
 │   │   │   └── 📁 viewNote
 │   │   │       └── 📄 ViewNoteAction.tsx
+│   │   │   └── 📁 requestAgain
+│   │   │       └── 📄 RequestAgainAction.tsx
 │   │   ├── 📄 DocumentActions.tsx
 │   │   ├── 📄 DocumentCard.tsx
 │   │   ├── 📄 DocumentsWrapper.tsx
@@ -264,6 +266,51 @@ src
 └── 📄 vite-env.d.ts
 ```
 
+## Developer Decisions
+
+These notes document personal technical decisions made during development, including rationale for choices that go beyond the explicit brief requirements.
+
+### Vite 7 (not Vite 8)
+
+Vite 8 was very new, and some plugins (especially HeroUI + Tailwind) weren’t fully compatible yet. Using Vite 7 reduces risk and provides a stable dev experience. Performance is essentially the same, and upgrading later is straightforward.
+
+### State Management: Redux Toolkit
+
+The app has multiple state domains (stage pipeline, documents, internal notes) that need to communicate. `useState` wouldn’t scale. Redux gives a single source of truth, traceable actions, DevTools support, and slice-based organization that can grow as the CRM expands.
+
+### UI Library: HeroUI
+
+I chose HeroUI for familiarity (faster implementation) and differentiation (avoiding default MUI/Ant Design). It’s Tailwind-native, so custom styles and utility classes integrate seamlessly.
+
+### Component-Based Icon System
+
+All icons live in `src/icons` as React components with props for size, color, and className. This keeps usage consistent and easily maintainable.
+
+### Colors from Figma → Tailwind Theme
+
+Colors were extracted directly from the Figma file and defined as custom design token values in  `@theme`  in css file. This means all color values are defined once and used as semantic Tailwind class names everywhere (e.g., `text-text-default`, `border-border-default`). If the design changes, only the config needs updating. 
+
+### Moment.js for Date Handling
+
+Dates appear in multiple formats: full date, relative time, countdowns. Moment.js simplifies this and keeps date logic centralized, making it easy to swap libraries later if needed.
+
+### Responsive Design
+
+The Figma design targets a desktop-first, three-column layout. Minor responsive decisions were made at the developer's discretion:
+
+- The three-column layout (sidebar / main content / right panel) collapses to a single-column stack on mobile viewports.
+- The left and right sidebars have their open/close state managed in React state. On large screens (lg), they can be toggled and appear as absolute-positioned panels, allowing them to slide in/out without breaking the layout.
+- The search input in the header is hidden on smaller screens to keep the layout clean and avoid crowding the header area.
+- The stage progress bar container can overflow.
+
+### Mock Data Typo Corrections
+
+Two field name inconsistencies were found in the provided mock JSON and corrected for TypeScript type safety:
+
+- `created_at` → `createdAt` (on `internalNotes[1]`) — inconsistent with the rest of the notes array
+- `uploaded_date` → `uploadedDate` (on `documents[6]`) — inconsistent with all other document entries
+
+Both fields now follow the camelCase convention used throughout the codebase and the TypeScript interface definitions in `src/types/application.ts`.
 
 ## Architecture Decisions
 
@@ -348,53 +395,6 @@ dispatch(addInternalNoteReducer(note));
 - Users see updates without refreshing the page
 - Conflicts and race conditions can be managed centrally
 - Ensures high accuracy and improved UX for enterprise workflows
-
-
-## Developer Notes
-
-These notes document personal technical decisions made during development, including rationale for choices that go beyond the explicit brief requirements.
-
-### Vite 7 (not Vite 8)
-
-Vite 8 was very new, and some plugins (especially HeroUI + Tailwind) weren’t fully compatible yet. Using Vite 7 reduces risk and provides a stable dev experience. Performance is essentially the same, and upgrading later is straightforward.
-
-### State Management: Redux Toolkit
-
-The app has multiple state domains (stage pipeline, documents, internal notes) that need to communicate. `useState` wouldn’t scale. Redux gives a single source of truth, traceable actions, DevTools support, and slice-based organization that can grow as the CRM expands.
-
-### UI Library: HeroUI
-
-I chose HeroUI for familiarity (faster implementation) and differentiation (avoiding default MUI/Ant Design). It’s Tailwind-native, so custom styles and utility classes integrate seamlessly.
-
-### Component-Based Icon System
-
-All icons live in `src/icons` as React components with props for size, color, and className. This keeps usage consistent and easily maintainable.
-
-### Colors from Figma → Tailwind Theme
-
-Colors were extracted directly from the Figma file and defined as custom design token values in  `@theme`  in css file. This means all color values are defined once and used as semantic Tailwind class names everywhere (e.g., `text-text-default`, `border-border-default`). If the design changes, only the config needs updating. 
-
-### Moment.js for Date Handling
-
-Dates appear in multiple formats: full date, relative time, countdowns. Moment.js simplifies this and keeps date logic centralized, making it easy to swap libraries later if needed.
-
-### Responsive Design
-
-The Figma design targets a desktop-first, three-column layout. Minor responsive decisions were made at the developer's discretion:
-
-- The three-column layout (sidebar / main content / right panel) collapses to a single-column stack on mobile viewports.
-- The stage progress bar container can overflow..
-
-### Mock Data Typo Corrections
-
-Two field name inconsistencies were found in the provided mock JSON and corrected for TypeScript type safety:
-
-- `created_at` → `createdAt` (on `internalNotes[1]`) — inconsistent with the rest of the notes array
-- `uploaded_date` → `uploadedDate` (on `documents[6]`) — inconsistent with all other document entries
-
-Both fields now follow the camelCase convention used throughout the codebase and the TypeScript interface definitions in `src/types/application.ts`.
-
----
 
 ## AI Tool Usage
 

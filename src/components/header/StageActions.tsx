@@ -1,7 +1,7 @@
 import ActionButton from "@/components/button/ActionButton";
 import { More } from "@/icons";
 import { selectCurrentStage } from "@/store/selectors/applicationSelectors";
-import { stageDesicion } from "@/store/slices/applicationSlice";
+import { stageDecision } from "@/store/slices/applicationSlice";
 import type { StageStatus } from "@/types/application";
 import {
   Dropdown,
@@ -15,11 +15,11 @@ function StageActions() {
   const dispatch = useDispatch();
   const currentStage = useSelector(selectCurrentStage);
 
-  const handleStageDesicion = (
+  const handleStageDecision = (
     status: Extract<StageStatus, "rejected" | "approved">,
   ) => {
     dispatch(
-      stageDesicion({
+      stageDecision({
         key: currentStage,
         status: status,
       }),
@@ -41,13 +41,13 @@ function StageActions() {
       <DropdownMenu aria-label="Actions">
         <DropdownItem
           key="approve"
-          onClick={() => handleStageDesicion("approved")}
+          onClick={() => handleStageDecision("approved")}
         >
           Approve Stage
         </DropdownItem>
         <DropdownItem
           key="reject"
-          onClick={() => handleStageDesicion("rejected")}
+          onClick={() => handleStageDecision("rejected")}
         >
           Reject Stage
         </DropdownItem>

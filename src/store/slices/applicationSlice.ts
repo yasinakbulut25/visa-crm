@@ -11,9 +11,9 @@ import {
   type InternalNotePayload,
 } from "./reducers/addInternalNoteReducer";
 import {
-  stageDesicionReducer,
-  type stageDesicionPayload,
-} from "./reducers/stageDesicionReducer";
+  stageDecisionReducer,
+  type stageDecisionPayload,
+} from "./reducers/stageDecisionReducer";
 
 const initialState: IApplicationState = structuredClone(
   mockData,
@@ -31,8 +31,8 @@ const applicationSlice = createSlice({
     addInternalNote: (state, action: PayloadAction<InternalNotePayload>) =>
       addInternalNoteReducer(state, action.payload),
 
-    stageDesicion: (state, action: PayloadAction<stageDesicionPayload>) =>
-      stageDesicionReducer(state, action.payload),
+    stageDecision: (state, action: PayloadAction<stageDecisionPayload>) =>
+      stageDecisionReducer(state, action.payload),
   },
 });
 
@@ -40,6 +40,6 @@ export const {
   moveToNextStage,
   updateDocument,
   addInternalNote,
-  stageDesicion,
+  stageDecision,
 } = applicationSlice.actions;
 export default applicationSlice.reducer;

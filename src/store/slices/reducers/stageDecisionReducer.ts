@@ -1,13 +1,13 @@
 import type { IApplicationState, StageStatus } from "@/types/application";
 
-export type stageDesicionPayload = {
+export type stageDecisionPayload = {
   key: string;
   status: Extract<StageStatus, "rejected" | "approved">;
 };
 
-export const stageDesicionReducer = (
+export const stageDecisionReducer = (
   state: IApplicationState,
-  payload: stageDesicionPayload,
+  payload: stageDecisionPayload,
 ) => {
   const { key, status } = payload;
 

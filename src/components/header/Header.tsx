@@ -1,8 +1,9 @@
-import { ArrowLeft, Mail, More, Search } from "@/icons";
+import { ArrowLeft, Mail, Search } from "@/icons";
 import InputField from "@/components/input/Input";
 import ActionButton from "@/components/button/ActionButton";
 import { mockData } from "@/data/mock";
 import NextStageButton from "./NextStageButton";
+import StageActions from "./StageActions";
 
 function Header() {
   return (
@@ -50,14 +51,7 @@ function Header() {
 
         <NextStageButton />
 
-        <ActionButton
-          variant="light"
-          color="primary"
-          isIconOnly
-          aria-label="More"
-        >
-          <More width={20} height={20} />
-        </ActionButton>
+        <StageActions />
       </div>
     </nav>
   );

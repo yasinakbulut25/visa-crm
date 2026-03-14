@@ -1,13 +1,13 @@
 import React from "react";
-import { Check } from "@/icons";
+import { Check, XIcon } from "@/icons";
 import moment from "moment";
-import type { Stage as IStage } from "@/types/application";
+import type { Stage as IStage, StageStatus } from "@/types/application";
 
 function Stage({ stage }: { stage: IStage }) {
   const { label, status, completedDate } = stage;
 
   const configs: Record<
-    string,
+    StageStatus,
     {
       circle: string;
       title: string;
@@ -44,6 +44,24 @@ function Stage({ stage }: { stage: IStage }) {
         value: "",
       },
       icon: null,
+    },
+    approved: {
+      circle: "bg-color-secondary border-2 border-[#02542D]",
+      title: "text-text-gray font-normal",
+      sub: {
+        class: "text-[#02542D]",
+        value: "Application Approved",
+      },
+      icon: <Check color="#fff" />,
+    },
+    rejected: {
+      circle: "bg-[#EC221F] border-4 border-[#900B09]",
+      title: "text-text-secondary font-light",
+      sub: {
+        class: "text-[#900B09]",
+        value: "Application Rejected",
+      },
+      icon: <XIcon color="#fff" />,
     },
   };
 

@@ -18,6 +18,8 @@ function NextStageButton() {
 
   const nextStage = application.stages[currentIndex + 1] || null;
 
+  const isDisabled = !nextStage || currentStage.status === "rejected";
+
   const handleNextStage = () => {
     if (nextStage) {
       dispatch(moveToNextStage());
@@ -31,11 +33,11 @@ function NextStageButton() {
         endContent={<ArrowRight width={20} height={20} />}
         color="primary"
         onPress={onOpen}
-        isDisabled={!nextStage}
+        isDisabled={isDisabled}
         aria-label="Move to Next Stage"
       >
         <span className="lg:flex hidden">
-          {!nextStage ? "Final Stage" : "Move to Next Stage"}
+          {isDisabled ? "Final Stage" : "Move to Next Stage"}
         </span>
       </ActionButton>
 

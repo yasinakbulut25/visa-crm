@@ -1,4 +1,9 @@
-export type StageStatus = "completed" | "current" | "pending";
+export type StageStatus =
+  | "completed"
+  | "current"
+  | "pending"
+  | "approved"
+  | "rejected";
 export interface Stage {
   key: string;
   label: string;

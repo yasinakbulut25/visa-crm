@@ -12,6 +12,7 @@ function Header() {
         <ActionButton
           variant="light"
           color="default"
+          className="sm:flex hidden"
           startContent={<ArrowLeft width={20} height={20} />}
           aria-label="Back"
         >
@@ -21,7 +22,7 @@ function Header() {
         <div className="flex items-center gap-2">
           <img src="./logo.png" alt="Here Event Logo" width={40} height={24} />
           <div className="flex items-center gap-2">
-            <span className="font-normal text-text-secondary">
+            <span className="sm:flex hidden font-normal text-text-secondary">
               Applications
             </span>
             <span className="font-normal text-text-secondary">/</span>

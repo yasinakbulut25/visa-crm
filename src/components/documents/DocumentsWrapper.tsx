@@ -10,7 +10,7 @@ function DocumentsWrapper() {
 
   return (
     <div className="w-full mx-auto p-6">
-      <div className="flex flex-wrap items-start gap-3">
+      <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="flex flex-col gap-1 mb-4">
           <h1 className="text-[32px] font-bold text-text-default leading-8">
             Document Management
@@ -19,12 +19,11 @@ function DocumentsWrapper() {
             Review and manage application documents
           </p>
         </div>
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="lg:hidden flex flex-wrap items-center gap-2 mb-3">
           <ActionButton
             onPress={() => dispatch(toggleLeftSidebar())}
             variant="bordered"
             color="primary"
-            className="lg:hidden flex"
             aria-label="Toggle Left Sidebar"
           >
             Profiles
@@ -33,7 +32,6 @@ function DocumentsWrapper() {
             onPress={() => dispatch(toggleRightSidebar())}
             variant="solid"
             color="primary"
-            className="lg:hidden flex"
             aria-label="Toggle Right Sidebar"
           >
             Notes

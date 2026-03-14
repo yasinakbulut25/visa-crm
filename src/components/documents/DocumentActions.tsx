@@ -1,8 +1,9 @@
 import type { Document } from "@/types/application";
-import { FileText, More } from "@/icons";
+import { More } from "@/icons";
 import ActionButton from "../button/ActionButton";
 import UploadDocumentAction from "./actions/uploadDocument/UploadDocumentAction";
 import ViewNoteAction from "./actions/viewNote/ViewNoteAction";
+import ViewDocumentAction from "./actions/viewDocument/ViewDocumentAction";
 
 function DocumentActions({ doc }: { doc: Document }) {
   const isMissing = doc.status === "missing";
@@ -15,14 +16,7 @@ function DocumentActions({ doc }: { doc: Document }) {
       {isMissing ? (
         <UploadDocumentAction doc={doc} />
       ) : (
-        <ActionButton
-          variant="bordered"
-          color="default"
-          startContent={<FileText width={20} />}
-          aria-label="View Doc"
-        >
-          View Doc
-        </ActionButton>
+        <ViewDocumentAction doc={doc} />
       )}
 
       <ActionButton
@@ -30,7 +24,7 @@ function DocumentActions({ doc }: { doc: Document }) {
         color="default"
         isIconOnly
         aria-label="More"
-        >
+      >
         <More width={20} height={20} />
       </ActionButton>
     </div>

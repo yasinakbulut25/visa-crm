@@ -8,7 +8,18 @@ function InternalNotes() {
 
   return (
     <div className="flex flex-col gap-6 border-b border-border-default pb-4">
-      <AddNote />
+      <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-1">
+          <h2 className="text-[20px] font-bold text-text-default leading-6">
+            Internal Notes
+          </h2>
+          <p className="text-sm font-light text-text-secondary leading-5">
+            Staff only - not visible to traveller
+          </p>
+        </div>
+        <AddNote />
+      </div>
+
       <div className="flex flex-col">
         {internalNotes.map((note) => {
           const timeAgo = timeAgoShort(note.createdAt);

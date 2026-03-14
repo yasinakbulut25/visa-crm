@@ -1,6 +1,25 @@
 import { useSelector } from "react-redux";
 import { selectCommunicationLog } from "@/store/selectors/applicationSelectors";
-import { Mail } from "@/icons";
+import { Mail, Message } from "@/icons";
+import type { CommunicationLog } from "@/types/application";
+
+type ChannelType = "email" | "sms";
+
+type ChannelConfig = {
+  label: string;
+  Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+};
+
+const CHANNEL_CONFIG: Record<ChannelType, ChannelConfig> = {
+  email: {
+    label: "Email",
+    Icon: Mail,
+  },
+  sms: {
+    label: "SMS",
+    Icon: Message,
+  },
+};
 
 function CommunicationLogs() {
   const communicationLogs = useSelector(selectCommunicationLog);
@@ -17,17 +36,21 @@ function CommunicationLogs() {
       </div>
 
       <div className="flex flex-col gap-3">
-        {communicationLogs.map((log) => {
-          const channel = log.channel === "email" ? "Email" : "SMS";
+        {communicationLogs.map((log: CommunicationLog) => {
+          const config = CHANNEL_CONFIG[log.channel as ChannelType];
+          const Icon = config.Icon;
+
           return (
             <div key={log.id} className="flex items-start gap-2">
               <div className="w-6 h-6 shrink-0 flex items-center justify-center rounded bg-[#E6E6E6]">
-                <Mail width={16} height={16} />
+                <Icon width={16} height={16} />
               </div>
+
               <div className="flex flex-col">
                 <p className="text-xs text-text-default font-semibold leading-4">
-                  {channel} Sent
+                  {config.label} Sent
                 </p>
+
                 <p className="text-sm text-text-secondary font-light leading-5">
                   {log.subject}
                 </p>

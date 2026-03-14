@@ -16,14 +16,15 @@ function DocumentActions({ doc }: { doc: Document }) {
         <UploadDocumentAction doc={doc} />
       ) : (
         <ActionButton
-          className="bg-white border text-sm font-semibold border-border-tertiary text-text-default"
+          variant="bordered"
+          color="default"
           startContent={<FileText width={20} />}
         >
           View Doc
         </ActionButton>
       )}
 
-      <ActionButton variant="light" isIconOnly>
+      <ActionButton variant="light" color="default" isIconOnly>
         <More width={20} height={20} />
       </ActionButton>
     </div>

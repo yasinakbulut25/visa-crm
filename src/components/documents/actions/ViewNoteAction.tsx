@@ -11,7 +11,8 @@ function ViewNoteAction({ doc }: { doc: Document }) {
     <>
       <ActionButton
         onPress={onOpen}
-        className="bg-white border text-sm font-semibold border-border-tertiary text-text-default"
+        variant="bordered"
+        color="default"
         startContent={<Edit width={20} />}
       >
         View Note
@@ -32,6 +33,7 @@ function ViewNoteAction({ doc }: { doc: Document }) {
         <ModalFooter className="gap-2">
           <ActionButton
             variant="light"
+            color="default"
             onPress={onClose}
             className="font-medium text-text-secondary rounded-xl"
           >

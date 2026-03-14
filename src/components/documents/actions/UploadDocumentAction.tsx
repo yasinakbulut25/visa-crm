@@ -1,9 +1,5 @@
 import { useRef, useState, useCallback } from "react";
-import {
-  ModalBody,
-  ModalFooter,
-  useDisclosure,
-} from "@heroui/react";
+import { ModalBody, ModalFooter, useDisclosure } from "@heroui/react";
 import { useDispatch } from "react-redux";
 import moment from "moment";
 import AppModal from "@/components/modal/AppModal";
@@ -54,6 +50,7 @@ function FilePreview({ uploadedFile, onRemove }: FilePreviewProps) {
       <ActionButton
         onPress={onRemove}
         variant="light"
+        color="default"
         size="sm"
         aria-label="Remove file"
       >
@@ -215,7 +212,8 @@ function UploadDocumentAction({ doc }: { doc: Document }) {
     <>
       <ActionButton
         onPress={onOpen}
-        className="bg-color-neutral text-sm font-semibold text-white"
+        variant="solid"
+        color="dark"
         startContent={<Upload width={20} color="#fff" />}
       >
         Upload
@@ -249,6 +247,7 @@ function UploadDocumentAction({ doc }: { doc: Document }) {
           <ModalFooter className="gap-2">
             <ActionButton
               variant="light"
+              color="default"
               onPress={handleClose}
               className="font-medium text-text-secondary rounded-xl"
             >
@@ -258,8 +257,8 @@ function UploadDocumentAction({ doc }: { doc: Document }) {
               onPress={handleUpload}
               isDisabled={!uploadedFile || isUploading}
               isLoading={isUploading}
-              variant="bordered"
-              className="border-none bg-color-primary"
+              variant="solid"
+              color="primary"
             >
               {isUploading ? "Uploading..." : "Upload"}
             </ActionButton>

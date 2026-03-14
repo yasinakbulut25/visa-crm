@@ -39,7 +39,7 @@ function AddNote() {
           isActive ? "bg-color-primary" : "bg-[#CDCDCD]"
         }`}
       >
-        <Send width={20} height={20} color={isActive ? "#fff" : "#757575"} />
+        <Send width={20} height={20} color={isActive ? "#000" : "#757575"} />
       </ActionButton>
     </div>
   );

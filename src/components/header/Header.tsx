@@ -48,22 +48,21 @@ function Header() {
       <div className="flex items-center gap-4 shrink-0">
         <ActionButton
           variant="bordered"
-          className="border border-border-secondary"
+          color="primary"
           startContent={<Mail width={20} height={20} />}
         >
           <span className="lg:flex hidden">Request Documents</span>
         </ActionButton>
 
         <ActionButton
-          variant="bordered"
-          className="border-none bg-color-primary"
           endContent={<ArrowRight width={20} height={20} />}
+          color="primary"
           onPress={handleNextStage}
         >
           <span className="lg:flex hidden">Move to Next Stage</span>
         </ActionButton>
 
-        <ActionButton variant="light" isIconOnly>
+        <ActionButton variant="light" color="primary" isIconOnly>
           <More width={20} height={20} />
         </ActionButton>
       </div>

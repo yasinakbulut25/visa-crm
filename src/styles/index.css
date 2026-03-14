@@ -22,4 +22,8 @@
   --color-border-secondary: #b8d30f;
   --color-border-neutral: #757575;
   --color-border-tertiary: #383838;
+
+  --color-button-default: #cdcdcd;
+  --color-button-primary: #c6dc3f;
+  --color-button-dark: #434343;
 }

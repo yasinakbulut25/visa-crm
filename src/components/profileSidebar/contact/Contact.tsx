@@ -20,6 +20,7 @@ function Contact() {
         </p>
         <ActionButton
           variant="light"
+          color="dark"
           className="bg-transparent"
           to="#"
           endContent={<Anchor width={20} height={20} />}

@@ -32,7 +32,7 @@ function Header() {
         </div>
       </div>
 
-      <div className="max-w-full min-w-50 flex-1">
+      <div className="md:flex hidden max-w-full min-w-50 flex-1">
         <InputField
           startContent={<Search width={20} height={20} color="#B3B3B3" />}
           placeholder="Search applications or travelers..."

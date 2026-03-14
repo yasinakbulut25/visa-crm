@@ -2,6 +2,7 @@ import type { Document } from "@/types/application";
 import StatusBadge from "./StatusBadge";
 import moment from "moment";
 import DocumentActions from "./DocumentActions";
+import clsx from "clsx";
 
 function DocumentCard({ doc }: { doc: Document }) {
   const isMissing = doc.status === "missing";
@@ -9,7 +10,10 @@ function DocumentCard({ doc }: { doc: Document }) {
 
   return (
     <div
-      className={`group flex items-center justify-between p-6 ${isRejected ? "bg-[#FEE9E7]" : "bg-white hover:bg-color-light"} border border-border-default rounded-xl transition-all duration-200`}
+      className={clsx(
+        "group flex items-center justify-between p-6 border border-border-default rounded-xl transition-all duration-200",
+        isRejected ? "bg-[#FEE9E7]" : "bg-white hover:bg-color-light",
+      )}
     >
       <div className="flex flex-col gap-1">
         <StatusBadge status={doc.status} />

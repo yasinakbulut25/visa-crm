@@ -1,4 +1,5 @@
 import type { DocumentStatus } from "@/types/application";
+import clsx from "clsx";
 
 interface StatusConfig {
   label: string;
@@ -32,7 +33,10 @@ function StatusBadge({ status }: { status: DocumentStatus }) {
   const config = STATUS_MAP[status];
   return (
     <span
-      className={`w-max px-2 py-1 rounded-lg border text-sm font-light leading-5 ${config.containerClass}`}
+      className={clsx(
+        "w-max px-2 py-1 rounded-lg border text-sm font-light leading-5",
+        config.containerClass,
+      )}
     >
       {config.label}
     </span>

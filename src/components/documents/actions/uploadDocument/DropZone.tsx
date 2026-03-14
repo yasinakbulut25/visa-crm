@@ -1,6 +1,7 @@
 import { Upload } from "@/icons";
 import { useCallback, useRef } from "react";
 import type { UploadState } from "./UploadDocumentAction";
+import clsx from "clsx";
 
 interface DropZoneProps {
   uploadState: UploadState;
@@ -37,15 +38,14 @@ function DropZone({ uploadState, onFileSelect, onDragChange }: DropZoneProps) {
       onDragLeave={() => onDragChange(false)}
       onDrop={handleDrop}
       onClick={() => inputRef.current?.click()}
-      className={`
-        relative cursor-pointer rounded-2xl border-2 border-dashed transition-all duration-200
-        flex flex-col items-center justify-center gap-3 p-10
-        ${
-          isDragging
-            ? "border-text-tertiary bg-color-secondary/20"
-            : "border-border-default bg-color-light hover:border-text-tertiary"
-        }
-      `}
+      className={clsx(
+        "relative cursor-pointer rounded-2xl border-2 border-dashed transition-all duration-200 flex flex-col items-center justify-center gap-3 p-10",
+        {
+          "border-text-tertiary bg-color-secondary/20": isDragging,
+          "border-border-default bg-color-light hover:border-text-tertiary":
+            !isDragging,
+        },
+      )}
     >
       <input
         ref={inputRef}

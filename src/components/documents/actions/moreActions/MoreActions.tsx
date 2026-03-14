@@ -2,6 +2,7 @@ import ActionButton from "@/components/button/ActionButton";
 import { More } from "@/icons";
 import { updateDocument } from "@/store/slices/applicationSlice";
 import type { Document, DocumentStatus } from "@/types/application";
+import { showToast } from "@/utils";
 import {
   Dropdown,
   DropdownTrigger,
@@ -24,6 +25,7 @@ function MoreActions({ doc }: { doc: Document }) {
         },
       }),
     );
+    showToast({ title: `Document ${status}`, color: "success" });
   };
 
   return (

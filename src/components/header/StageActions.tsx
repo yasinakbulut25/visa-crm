@@ -15,6 +15,8 @@ function StageActions() {
   const dispatch = useDispatch();
   const currentStage = useSelector(selectCurrentStage);
 
+  if (!currentStage) return null;
+
   const handleStageDecision = (
     status: Extract<StageStatus, "rejected" | "approved">,
   ) => {

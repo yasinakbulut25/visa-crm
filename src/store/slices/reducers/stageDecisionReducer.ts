@@ -1,4 +1,5 @@
 import type { IApplicationState, StageStatus } from "@/types/application";
+import { showToast } from "@/utils";
 
 export type stageDecisionPayload = {
   key: string;
@@ -20,6 +21,7 @@ export const stageDecisionReducer = (
   if (status === "rejected") {
     stages[targetIndex].status = "rejected";
     stages[targetIndex].completedDate = new Date().toISOString();
+    showToast({ title: "Stage Rejected", color: "danger" });
     return;
   }
 
@@ -39,4 +41,5 @@ export const stageDecisionReducer = (
   });
 
   state.application.currentStage = stages[lastIndex].key;
+  showToast({ title: "Stage Approved", color: "success" });
 };

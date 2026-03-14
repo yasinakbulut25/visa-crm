@@ -1,4 +1,5 @@
 import type { RelatedStatus } from "@/types/application";
+import clsx from "clsx";
 
 interface StatusBadgeProps {
   variant: RelatedStatus;
@@ -25,7 +26,10 @@ function StatusBadge({ variant }: StatusBadgeProps) {
   const item = variantStyles[variant];
   return (
     <span
-      className={`px-2 py-1 rounded-lg text-xs font-light leading-5 ${item.style}`}
+      className={clsx(
+        "px-2 py-1 rounded-lg text-xs font-light leading-5",
+        item.style,
+      )}
     >
       {item.text}
     </span>

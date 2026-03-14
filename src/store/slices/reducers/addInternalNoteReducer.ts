@@ -1,4 +1,5 @@
 import type { IApplicationState, Note } from "@/types/application";
+import { showToast } from "@/utils";
 
 export interface InternalNotePayload {
   author: string;
@@ -16,4 +17,5 @@ export const addInternalNoteReducer = (
     createdAt: new Date().toISOString(),
   };
   state.internalNotes.unshift(newNote);
+  showToast({ title: "Internal note added succesfully", color: "success" });
 };

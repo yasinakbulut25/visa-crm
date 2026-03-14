@@ -1,14 +1,17 @@
 import type { IApplicationState } from "@/types/application";
+import { showToast } from "@/utils";
 
 export const moveToNextStageReducer = (state: IApplicationState) => {
   const currentIndex = state.application.stages.findIndex(
-    (s) => s.key === state.application.currentStage
+    (s) => s.key === state.application.currentStage,
   );
   const next = state.application.stages[currentIndex + 1];
   if (next) {
     state.application.stages[currentIndex].status = "completed";
-    state.application.stages[currentIndex].completedDate = new Date().toISOString();
+    state.application.stages[currentIndex].completedDate =
+      new Date().toISOString();
     state.application.currentStage = next.key;
     next.status = "current";
+    showToast({ title: "Moved to next stage succesfully", color: "success" });
   }
 };

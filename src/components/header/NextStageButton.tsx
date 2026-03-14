@@ -14,6 +14,9 @@ function NextStageButton() {
   const currentIndex = application.stages.findIndex(
     (s) => s.key === application.currentStage,
   );
+
+  if (currentIndex === -1) return null;
+
   const currentStage = application.stages[currentIndex];
 
   const nextStage = application.stages[currentIndex + 1] || null;
@@ -21,9 +24,8 @@ function NextStageButton() {
   const isDisabled = !nextStage || currentStage.status === "rejected";
 
   const handleNextStage = () => {
-    if (nextStage) {
-      dispatch(moveToNextStage());
-    }
+    if (!nextStage) return;
+    dispatch(moveToNextStage());
     onClose();
   };
 

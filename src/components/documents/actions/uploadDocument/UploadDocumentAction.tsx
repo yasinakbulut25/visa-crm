@@ -87,7 +87,7 @@ function UploadDocumentAction({ doc }: { doc: Document }) {
         );
 
         setUploadState("success");
-        showToast({ title: "Uploaded successfully!", color: "success" });
+        showToast({ title: "Document uploaded succesfully", color: "success" });
       } else {
         setUploadState("error");
         setErrorMessage(result.error);

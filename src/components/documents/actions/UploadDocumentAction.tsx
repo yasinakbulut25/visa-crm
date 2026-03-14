@@ -215,6 +215,7 @@ function UploadDocumentAction({ doc }: { doc: Document }) {
         variant="solid"
         color="dark"
         startContent={<Upload width={20} color="#fff" />}
+        aria-label="Upload Document"
       >
         Upload
       </ActionButton>
@@ -250,6 +251,7 @@ function UploadDocumentAction({ doc }: { doc: Document }) {
               color="default"
               onPress={handleClose}
               className="font-medium text-text-secondary rounded-xl"
+              aria-label="Cancel"
             >
               Cancel
             </ActionButton>
@@ -259,6 +261,7 @@ function UploadDocumentAction({ doc }: { doc: Document }) {
               isLoading={isUploading}
               variant="solid"
               color="primary"
+              aria-label="Upload"
             >
               {isUploading ? "Uploading..." : "Upload"}
             </ActionButton>

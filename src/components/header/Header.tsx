@@ -50,6 +50,7 @@ function Header() {
           variant="bordered"
           color="primary"
           startContent={<Mail width={20} height={20} />}
+          aria-label="Request Documents"
         >
           <span className="lg:flex hidden">Request Documents</span>
         </ActionButton>
@@ -58,11 +59,17 @@ function Header() {
           endContent={<ArrowRight width={20} height={20} />}
           color="primary"
           onPress={handleNextStage}
+          aria-label="Move to Next Stage"
         >
           <span className="lg:flex hidden">Move to Next Stage</span>
         </ActionButton>
 
-        <ActionButton variant="light" color="primary" isIconOnly>
+        <ActionButton
+          variant="light"
+          color="primary"
+          isIconOnly
+          aria-label="More"
+        >
           <More width={20} height={20} />
         </ActionButton>
       </div>

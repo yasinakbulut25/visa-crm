@@ -19,12 +19,18 @@ function DocumentActions({ doc }: { doc: Document }) {
           variant="bordered"
           color="default"
           startContent={<FileText width={20} />}
+          aria-label="View Doc"
         >
           View Doc
         </ActionButton>
       )}
 
-      <ActionButton variant="light" color="default" isIconOnly>
+      <ActionButton
+        variant="light"
+        color="default"
+        isIconOnly
+        aria-label="More"
+        >
         <More width={20} height={20} />
       </ActionButton>
     </div>

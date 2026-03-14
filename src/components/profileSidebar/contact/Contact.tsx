@@ -24,6 +24,7 @@ function Contact() {
           className="bg-transparent"
           to="#"
           endContent={<Anchor width={20} height={20} />}
+          aria-label="View Full Page Profile"
         >
           View Full Page Profile
         </ActionButton>

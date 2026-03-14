@@ -14,6 +14,7 @@ function ViewNoteAction({ doc }: { doc: Document }) {
         variant="bordered"
         color="default"
         startContent={<Edit width={20} />}
+        aria-label="View Note"
       >
         View Note
       </ActionButton>
@@ -36,6 +37,7 @@ function ViewNoteAction({ doc }: { doc: Document }) {
             color="default"
             onPress={onClose}
             className="font-medium text-text-secondary rounded-xl"
+            aria-label="Close"
           >
             Close
           </ActionButton>

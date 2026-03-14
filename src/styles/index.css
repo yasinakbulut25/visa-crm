@@ -27,3 +27,16 @@
   --color-button-primary: #c6dc3f;
   --color-button-dark: #434343;
 }
+
+@keyframes upload-progress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@utility animate-upload-progress {
+  animation: upload-progress 1.2s ease-in-out forwards;
+}

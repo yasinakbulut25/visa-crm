@@ -1,8 +1,8 @@
 import type { Document } from "@/types/application";
 import { FileText, More } from "@/icons";
 import ActionButton from "../button/ActionButton";
-import UploadDocumentAction from "./actions/UploadDocumentAction";
-import ViewNoteAction from "./actions/ViewNoteAction";
+import UploadDocumentAction from "./actions/uploadDocument/UploadDocumentAction";
+import ViewNoteAction from "./actions/viewNote/ViewNoteAction";
 
 function DocumentActions({ doc }: { doc: Document }) {
   const isMissing = doc.status === "missing";

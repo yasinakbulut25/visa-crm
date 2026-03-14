@@ -1,137 +1,28 @@
-import { useRef, useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { Alert, ModalBody, ModalFooter, useDisclosure } from "@heroui/react";
 import { useDispatch } from "react-redux";
 import AppModal from "@/components/modal/AppModal";
-import { FileText, Upload, XIcon } from "@/icons";
+import { Upload } from "@/icons";
 import ActionButton from "@/components/button/ActionButton";
 import { updateDocument } from "@/store/slices/applicationSlice";
 import type { Document } from "@/types/application";
 import { showToast } from "@/utils";
 import { fakeUpload } from "@/utils/fakeUpload";
+import UploadLoading from "./UploadLoading";
+import DropZone from "./DropZone";
+import FilePreview from "./FilePreview";
 
-interface UploadedFile {
+export interface UploadedFile {
   file: File;
   preview?: string;
 }
 
-type UploadState = "idle" | "dragging" | "uploading" | "success" | "error";
-
-interface FilePreviewProps {
-  uploadedFile: UploadedFile;
-  onRemove: () => void;
-}
-
-function FilePreview({ uploadedFile, onRemove }: FilePreviewProps) {
-  const { file, preview } = uploadedFile;
-  const isImage = file.type.startsWith("image/");
-  const sizeKB = (file.size / 1024).toFixed(1);
-
-  return (
-    <div className="flex items-center gap-3 p-3 bg-color-light border border-border-default rounded-xl">
-      <div className="w-12 h-12 rounded-lg bg-white flex items-center justify-center overflow-hidden shrink-0">
-        {isImage && preview ? (
-          <img
-            src={preview}
-            alt={file.name}
-            className="w-full h-full object-cover"
-          />
-        ) : (
-          <FileText />
-        )}
-      </div>
-
-      <div className="flex-1 min-w-0">
-        <p className="text-sm font-medium text-text-default truncate">
-          {file.name}
-        </p>
-        <p className="text-xs text-text-secondary">{sizeKB} KB</p>
-      </div>
-
-      <ActionButton
-        onPress={onRemove}
-        variant="light"
-        color="default"
-        size="sm"
-        aria-label="Remove file"
-      >
-        <XIcon />
-      </ActionButton>
-    </div>
-  );
-}
-
-interface DropZoneProps {
-  uploadState: UploadState;
-  onFileSelect: (file: File) => void;
-  onDragChange: (dragging: boolean) => void;
-}
-
-function DropZone({ uploadState, onFileSelect, onDragChange }: DropZoneProps) {
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  const handleDrop = useCallback(
-    (e: React.DragEvent) => {
-      e.preventDefault();
-      onDragChange(false);
-      const file = e.dataTransfer.files[0];
-      if (file) onFileSelect(file);
-    },
-    [onFileSelect, onDragChange],
-  );
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) onFileSelect(file);
-  };
-
-  const isDragging = uploadState === "dragging";
-
-  return (
-    <div
-      onDragOver={(e) => {
-        e.preventDefault();
-        onDragChange(true);
-      }}
-      onDragLeave={() => onDragChange(false)}
-      onDrop={handleDrop}
-      onClick={() => inputRef.current?.click()}
-      className={`
-        relative cursor-pointer rounded-2xl border-2 border-dashed transition-all duration-200
-        flex flex-col items-center justify-center gap-3 p-10
-        ${
-          isDragging
-            ? "border-text-tertiary bg-color-secondary/20"
-            : "border-border-default bg-color-light hover:border-text-tertiary"
-        }
-      `}
-    >
-      <input
-        ref={inputRef}
-        type="file"
-        className="hidden"
-        onChange={handleChange}
-        accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"
-      />
-
-      <div className="w-14 h-14 rounded-2xl flex items-center justify-center transition-colors bg-white shadow">
-        <Upload />
-      </div>
-
-      <div className="text-center">
-        <p className="text-sm font-semibold text-text-secondary">
-          {isDragging ? "Drop your file here" : "Drag & drop your file here"}
-        </p>
-        <p className="text-xs text-text-tertiary mt-1">
-          or <span className="font-semibold">browse files</span>
-        </p>
-      </div>
-
-      <p className="text-xs text-text-tertiary">
-        PDF, JPG, PNG, DOC up to 10MB
-      </p>
-    </div>
-  );
-}
+export type UploadState =
+  | "idle"
+  | "dragging"
+  | "uploading"
+  | "success"
+  | "error";
 
 function UploadDocumentAction({ doc }: { doc: Document }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -229,19 +120,30 @@ function UploadDocumentAction({ doc }: { doc: Document }) {
         description="Supported formats: PDF, JPG, PNG, DOC"
       >
         <ModalBody className="py-5 flex flex-col gap-4">
-          <DropZone
-            uploadState={uploadState}
-            onFileSelect={handleFileSelect}
-            onDragChange={(dragging) =>
-              setUploadState(dragging ? "dragging" : "idle")
-            }
-          />
+          {isUploading ? (
+            <UploadLoading fileName={uploadedFile?.file.name} />
+          ) : (
+            <>
+              <DropZone
+                uploadState={uploadState}
+                onFileSelect={handleFileSelect}
+                onDragChange={(dragging) =>
+                  setUploadState(dragging ? "dragging" : "idle")
+                }
+              />
 
-          {uploadedFile && (
-            <FilePreview uploadedFile={uploadedFile} onRemove={resetState} />
+              {uploadedFile && (
+                <FilePreview
+                  uploadedFile={uploadedFile}
+                  onRemove={resetState}
+                />
+              )}
+
+              {errorMessage && (
+                <Alert color="danger" description={errorMessage} />
+              )}
+            </>
           )}
-
-          {errorMessage && <Alert color="danger" description={errorMessage} />}
         </ModalBody>
 
         {!isSuccess && (
